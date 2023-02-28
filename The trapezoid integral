@@ -1,4 +1,4 @@
-Интеграл по трапеции
+//Интеграл по трапеции
 
 #include <iostream>
 #include <math.h>
