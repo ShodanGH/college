@@ -1,0 +1,29 @@
+Интеграл по трапеции
+
+#include <iostream>
+#include <math.h>
+#include <cmath>
+using namespace std;
+double f(double x) {
+return pow((x/2), 2);
+}
+int main() {
+double a, b, n, dx;		// a,b - пределы, n - точность, dx - дельта от икс
+
+cout << "Enter the beginning of the interval: ";
+cin >> a;
+cout << "Enter the end of the integral: ";
+cin >> b;
+cout << "Enter the number of splits: ";
+cin >> n;
+dx = (b - a) / n;
+double A1 = 0, A2 = 0;		//пределы
+for (double i = a; i < b; i = i + dx) {		//перебор точек отрезка
+A1 += dx * f(i);
+A2 += (f(i) + f(i + dx)) / 2 * dx;
+
+}
+cout << "The area of the rectangle method is equal to = " << A1<< endl;
+cout << "The area of the trapezoid method is equal to = " << A2;
+return 0;
+}
