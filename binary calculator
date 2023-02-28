@@ -1,4 +1,4 @@
-двоичный калькулятор
+//двоичный калькулятор
 
 #include <iostream>
 #include <math.h>
