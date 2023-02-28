@@ -1,0 +1,52 @@
+перевод систем
+
+#include<iostream>
+#include<stdio.h>
+#include<cmath>
+using namespace std;
+int binary()				//объявлю функцию, для перевода в двоичную систему
+{
+int num=0, t=0, d=1;			//num - число, t - ответ, d - разряд
+cout<<"Enter a number in decimal: ";
+cin>>num;
+while(num)				//выполняем пока можно выполнить
+{
+t +=(num%2)*d;				//основное деление
+num=num/2;				//деление следующего числа
+d=d*10;					//следующий разряд
+}
+cout<<"A number in the binary system: "<<t;
+return 0;
+}
+int decimal()				//объявлю функцию, для перевода в десятичную систему
+{
+int i=0, b=0, num;			//num - число, b - ответ, i - степень двойки
+cout << "Enter a number in binary: ";
+cin >> num;
+
+while (num != 0)				//запустить если не ноль
+{
+b= b+(num % 10)*pow(2, i);		//формула
+num = num / 10;				//следующий разряд
+i++;
+}
+cout<<"A number in the decimal system: "<<b<<endl;
+
+return 0;
+}
+int main()
+{
+    cout << "choose your system: \n1 - decimal\n2 - binary\nwrite here: ";
+    int sys;
+    cin>>sys;
+    if (sys == 1){			//самый обычный выбор+сообщение об ошибке
+        decimal();
+    }
+    else if(sys == 2){
+        binary();
+    }
+    else{
+        cout<<"error 01: wrong key";
+        return 0;
+    }
+}
