@@ -1,0 +1,72 @@
+//на заранее отведённый интервал генерируются случайные числа и полученный график сохраняется в отдельный файл
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <clocale>
+#include <fstream>
+#include <string>
+#include <iomanip>
+#include <math.h>
+
+using namespace std;
+int main()
+{
+ setlocale(LC_ALL, "rus");
+ float X[21]={1,0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1,0,-0.1,-0.2,-0.3,-0.4,-0.5,-0.6,-0.7,-0.8,-0.9,-1};
+ double F, P;
+
+
+
+ float RD_Y[21] {};           // для чисел c плавающей точкой
+ srand(time(NULL));                     // при каждом запуске предотвращает повотр рандома предыдущего запуска
+ for (int i = 0; i < 21; i++)
+ {
+ RD_Y[i] = rand() % 41 - 20; // -20 ... 20
+ }
+cout << endl;
+
+ cout << endl << "Y  -|-  X"<< endl;// Массив  c числами oт 0.01
+
+
+
+for ( int i = 0; i < 21; i++ )
+{
+cout << RD_Y[i] << "  -|-  "<< X[i] ;
+cout <<  endl;
+}
+cout << endl;
+cout<<"F (Y-шум) = P (Y-реш) + Y (Y-Массив рандомных Y)"<<endl;
+cout << endl << "P(Y-реш)   F(Y шум)"<< endl;
+for (int i = 0; i < 21; i++ )
+{
+    int q = rand() % 2 + 0; // от 0 до 1
+    P = (X[i]/2)*(X[i]/2);
+if(q==1){
+    F = (X[i]/2)*(X[i]/2) - RD_Y[i];
+}
+else if(q==0){
+    F = (X[i]/2)*(X[i]/2) + RD_Y[i];
+}
+
+cout << P << "  -|-  "<< F ;
+
+cout <<  endl;
+string path = "in.txt";             //создание файла
+ofstream fout;                      //создать запись в файл только для просмотра
+fout.open(path,ofstream::app);
+if(!fout.is_open())
+{
+    cout << "Ошибка открытия файла."  << endl;
+}
+else
+{
+    fout << endl << "P(Y решёный)   F(Y шум)"<< endl;
+    fout << P << "                  " << F << endl ;
+
+}
+
+}
+
+return 0;
+}
